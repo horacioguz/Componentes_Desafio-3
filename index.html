@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Componentes</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+
+
+    <style>
+        html {
+            background-image: url(https://rickandmortypod.com/wp-content/uploads/2018/11/cropped-RM_page-header_background1-3.png);
+            background-repeat: no-repeat;
+            background-size: cover;
+            color: green;
+        }
+        .characters{
+            display: flex;
+            align-items: center;
+            margin: 30px 0;
+        }
+        img{
+            border-radius: 50%;
+            width: 150px;
+            margin: 0 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <new-component></new-component>
+    </div>
+</body>
+</html>
+
+<script>
+    Vue.component('new-component', {
+        data() {
+            return {
+                characters: [{
+                        name: 'Rick Sanchez',
+                        src: 'https://rickandmortyapi.com/api/character/avatar/1.jpeg'
+                    },
+                    {
+                        name: 'Morty Smith',
+                        src: 'https://rickandmortyapi.com/api/character/avatar/2.jpeg'
+                    },
+                    {
+                        name: 'Summer Smith',
+                        src: 'https://rickandmortyapi.com/api/character/avatar/3.jpeg'
+                    },
+                    {
+                        name: 'Beth Smith',
+                        src: 'https://rickandmortyapi.com/api/character/avatar/4.jpeg'
+                    },
+                    {
+                        name: 'Jerry Smith',
+                        src: 'https://rickandmortyapi.com/api/character/avatar/5.jpeg'
+                    },
+                ]
+            }
+        },
+        template: `
+            <div>
+                <div class="characters" v-for="(character, i) in characters" :key="i">
+                    <img :src="character.src" :alt="character.name">
+                    <h2>{{character.name}}</h2>
+                </div>
+            </div>
+        `
+    })
+    const app = new Vue({
+        el: '#app'
+    })
+</script>
